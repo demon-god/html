@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Click Counter</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    button { font-size: 2rem; padding: 1rem 2rem; }
+    h1 { font-size: 4rem; }
+  </style>
+</head>
+<body>
+  <h1 id="count">0</h1>
+  <button onclick="increment()">Click Me!</button>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+  <script>
+    // Replace with your actual Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const countRef = db.ref('clickCount');
+
+    countRef.on('value', (snapshot) => {
+      const count = snapshot.val() || 0;
+      document.getElementById('count').textContent = count;
+    });
+
+    function increment() {
+      countRef.transaction((current) => (current || 0) + 1);
+    }
+  </script>
+</body>
+</html>
