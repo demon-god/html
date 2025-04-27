@@ -1,45 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Click Counter</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
-    button { font-size: 2rem; padding: 1rem 2rem; }
-    h1 { font-size: 4rem; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 id="count">0</h1>
-  <button onclick="increment()">Click Me!</button>
+  <header>
+    <h1>Hi, I'm [Your Name]!</h1>
+    <p>Welcome to my portfolio website. Here are some of my projects!</p>
+  </header>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Project 1</h3>
+      <p>Short description of Project 1.</p>
+    </div>
+    <div class="project">
+      <h3>Project 2</h3>
+      <p>Short description of Project 2.</p>
+    </div>
+    <!-- Add more projects here -->
+  </section>
 
-  <script>
-    // Replace with your actual Firebase config
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "SENDER_ID",
-      appId: "APP_ID"
-    };
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>You can reach me at <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+  </section>
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    const countRef = db.ref('clickCount');
-
-    countRef.on('value', (snapshot) => {
-      const count = snapshot.val() || 0;
-      document.getElementById('count').textContent = count;
-    });
-
-    function increment() {
-      countRef.transaction((current) => (current || 0) + 1);
-    }
-  </script>
+  <footer>
+    <p>© [Your Name] 2025</p>
+  </footer>
 </body>
 </html>
+
