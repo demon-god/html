@@ -32,3 +32,11 @@ footer {
   color: white;
   margin-top: 20px;
 }
+a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
